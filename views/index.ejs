@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%=title%></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</head>
+
+<style>
+   .btn{
+      background-color: cyan;
+   }
+
+   .btn1{
+    background-color: cyan;
+       border-radius:5px;
+       padding:5px;
+       width:60px;
+   }
+
+   .label{
+     margin-left:450px;
+       margin-top:15px;
+       padding:5px;
+       border-radius:5px;
+   }
+   body{
+    background-image:linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)),url("static/images/background.jpg");
+      background-repeat:no-repeat;
+      background-size: cover;
+      min-height: 100vh;
+      
+   }
+
+   .table{
+       width:500px;
+       margin-left:350px;
+       margin-top:30px;
+       background-color: black;
+      
+   }
+   th{
+       background-color:white;
+      
+   }
+   td{
+       color:white;
+      
+   }
+
+  
+</style>
+
+<body>
+
+<CENTER>
+  
+    <div class="container" >
+        <div class="row ">
+            <form method="POST" action='/post' class="mt-5">
+                
+                 <input name="toDoList" type="text" placeholder="ADD TASK" class="label" >
+                 <input type="submit" class="btn1" value="ADD">
+             </form>
+        </div>
+     
+        <div class="row">
+           
+            <table class="table" >
+                <thead>
+                    <tr>
+                        <th scope="col-sm">THINGS TO DO </th>
+                        <th scope="col-sm">ACTION</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (i=data.length-1;i>=0;i--) {%>
+                        <tr>
+                            <td><%=data[i].toDoList%></td>
+                            <td><form action="<%= `/delete/${i}` %>" method="post" >
+                                <input type="submit" value="Delete" name="" id="delete" class="btn">
+                             </form>
+                            </td>
+                        </tr>
+                        <%}%>   
+                </tbody>
+            
+            </table>
+        </div>
+    </div>
+    
+       
+
+
+</CENTER>
+</body>
+</html>
